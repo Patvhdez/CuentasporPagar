@@ -1,24 +1,23 @@
 
 package com.cuentasporpagar.entradamodel;
 
-import java.sql.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class Entrada {
     private int id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date Fecha_doc;
+    private String Fecha_doc;
     private Float Monto;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date Fecha_registro;
+    private String Fecha_registro;
     private String Proveedor;
     private String Estado;
 
     public Entrada() {
     }
 
-    public Entrada(Date Fecha_doc, Float Monto, Date Fecha_registro, String Proveedor, String Estado) {
+    public Entrada(String Fecha_doc, Float Monto, String Fecha_registro, String Proveedor, String Estado) {
         this.Fecha_doc = Fecha_doc;
         this.Monto = Monto;
         this.Fecha_registro = Fecha_registro;
@@ -26,7 +25,7 @@ public class Entrada {
         this.Estado = Estado;
     }
 
-    public Entrada(int id, Date Fecha_doc, Float Monto, Date Fecha_registro, String Proveedor, String Estado) {
+    public Entrada(int id, String Fecha_doc, Float Monto, String Fecha_registro, String Proveedor, String Estado) {
         this.id = id;
         this.Fecha_doc = Fecha_doc;
         this.Monto = Monto;
@@ -43,11 +42,11 @@ public class Entrada {
         this.id = id;
     }
 
-    public Date getFecha_doc() {
+    public String getFecha_doc() {
         return Fecha_doc;
     }
 
-    public void setFecha_doc(Date Fecha_doc) {
+    public void setFecha_doc(String Fecha_doc) {
         this.Fecha_doc = Fecha_doc;
     }
 
@@ -59,11 +58,11 @@ public class Entrada {
         this.Monto = Monto;
     }
 
-    public Date getFecha_registro() {
+    public String getFecha_registro() {
         return Fecha_registro;
     }
 
-    public void setFecha_registro(Date Fecha_registro) {
+    public void setFecha_registro(String Fecha_registro) {
         this.Fecha_registro = Fecha_registro;
     }
 

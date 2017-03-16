@@ -6,6 +6,10 @@ import com.cuentasporpagar.entradamodel.Entrada;
 import com.cuentasporpagar.entradamodel.ValidarEntrada;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,6 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("editentrada.htm")
 public class EditentradaController
 {
+    Date FechaDoc;
+    Date FechaRegistro;
     ValidarEntrada validarEntrada;
     private JdbcTemplate jdbcTemplate;
     
@@ -32,8 +38,9 @@ public class EditentradaController
     {
         this.validarEntrada = new ValidarEntrada();
         Conectar con = new Conectar();
-        this.jdbcTemplate = new JdbcTemplate(con.conectar());
+        this.jdbcTemplate = new JdbcTemplate(con.conectar());       
     }
+    
    @RequestMapping(method=RequestMethod.GET) 
     public ModelAndView form(HttpServletRequest request)
     {
@@ -46,15 +53,16 @@ public class EditentradaController
           datos.getProveedor(), datos.getEstado()));
         return mav;
     }
+    
     @RequestMapping(method=RequestMethod.POST)
     public ModelAndView form
         (
-                @ModelAttribute("Entrada") Entrada e,
+                @ModelAttribute("entrada") Entrada e,
                 BindingResult result,
                 SessionStatus status,
                 HttpServletRequest request
         
-        )
+        ) throws ParseException
     {
         
         this.validarEntrada.validate(e, result);
@@ -71,6 +79,7 @@ public class EditentradaController
         }else
         {
             int id = Integer.parseInt(request.getParameter("id"));
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");           
             this.jdbcTemplate.update
         (
           "update Entrada_Docs" 
@@ -78,10 +87,10 @@ public class EditentradaController
            + "Monto=?,"
            + "Fecha_registro=?,"
            + "Proveedor=?,"
-           + "Estado=?"
+           + "Estado=? "
            +"where "
-           + "id=?",
-                e.getFecha_doc(), e.getMonto(), e.getFecha_registro(), e.getProveedor(),
+           + "id=? ",
+                new java.sql.Date(dateFormat.parse(e.getFecha_doc()).getTime()) , e.getMonto(), new java.sql.Date(dateFormat.parse(e.getFecha_registro()).getTime()), e.getProveedor(),
                 e.getEstado(), id);
             return new ModelAndView("redirect:/entrada.htm");
           
@@ -98,9 +107,9 @@ public class EditentradaController
             {
                 public Entrada extractData(ResultSet rs) throws SQLException, DataAccessException {
                     if (rs.next()) {
-                        entrada.setFecha_doc(rs.getDate("Fecha_doc"));
+                        entrada.setFecha_doc(rs.getString("Fecha_doc"));
                         entrada.setMonto(rs.getFloat("Monto"));
-                        entrada.setFecha_registro(rs.getDate("Fecha_registro"));
+                        entrada.setFecha_registro(rs.getString("Fecha_registro"));
                         entrada.setProveedor(rs.getString("Proveedor")); 
                         entrada.setEstado(rs.getString("Estado"));
                     }

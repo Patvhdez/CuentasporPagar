@@ -31,6 +31,8 @@
                 <prop key="entrada.htm">entradaController</prop>
                 <prop key="addentrada.htm">addentradaController</prop>
                 <prop key="editentrada.htm">editentradaController</prop>
+                <prop key="deleteentrada.htm">deleteentradaController</prop>
+                
                 
                  
                
@@ -57,6 +59,7 @@
     <bean name="entradaController" class="com.cuentasporpagar.entradacontroller.EntradaController"/>
     <bean name="addentradaController" class="com.cuentasporpagar.entradacontroller.AddentradaController"/>
     <bean name="editentradaController" class="com.cuentasporpagar.entradacontroller.EditentradaController"/>
+    <bean name="deleteentradaController" class="com.cuentasporpagar.entradacontroller.DeleteentradaController"/>
     
     
     <bean name="indexController"

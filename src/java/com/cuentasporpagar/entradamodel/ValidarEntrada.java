@@ -23,7 +23,7 @@ public class ValidarEntrada implements Validator {
     public void validate(Object o, Errors errors) {
         Entrada entrada=(Entrada)o;
          ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Fecha_doc",
-        "required.Fecha_Doc", "El campo Fecha Documento es Obligatorio!");
+        "required.Fecha_doc", "El campo Fecha Documento es Obligatorio!");
           ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Monto",
         "required.Monto", "El campo Monto es Obligatorio!");
            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Fecha_registro",

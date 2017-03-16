@@ -1,0 +1,9 @@
+drop database techworld3g;
+
+create database techworld3g;
+use techworld3g;
+
+create table users(first_name varchar(20),last_name varchar(20),username varchar(20),password varchar(20),primary key(username));
+
+insert into users(first_name,last_name,username,password)
+	values('Michael','Johnson','mike63','1234');

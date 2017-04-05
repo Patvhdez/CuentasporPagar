@@ -51,11 +51,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <a href="#" class="navbar-brand">Login</a>
+          <a href="#" class="navbar-brand">CuentasxPagar</a>
         </div>
         <div class="collapsed navbar-collapsed" id="navbar-1">
           <ul class="nav navbar-nav">
-           <li><a href="">About</a></li>
+          
             
         </ul>
          <span></span>

@@ -56,8 +56,8 @@ public class AddentradaController
         }else
         {
             
-                EntradaContable entrada = new EntradaContable(82, "DB", 1200);
-                EntradaContable entrada1 = new EntradaContable(4, "CR", 1200);
+                EntradaContable entrada = new EntradaContable(82, "DB", e.getMonto());
+                EntradaContable entrada1 = new EntradaContable(4, "CR", e.getMonto());
                 Integracion.enviarInformacion("H",entrada,entrada1);
                 
             this.jdbcTemplate.update(
